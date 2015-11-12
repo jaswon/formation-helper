@@ -7,7 +7,9 @@ $(function() {
         simpleStorage.set('list',"[]")
         projects = []
     } else {
+        console.log(getlist);
         projects = JSON.parse(getlist)
+        console.log(projects);
     }
     startMenu()
 })
@@ -18,25 +20,35 @@ function startMenu () {
             class: "list-group-item",
             href: "#",
             click: function() {
-                openProject(i)
+                openProject(i,false)
             },
-            text: i
+            text: i.name
         }))
     })
     $('#project-list').append($( "<a/>", {
         class: "list-group-item",
         href: "#",
         click: function() {
-            openProject("new")
+            $('#list-or-new').carousel(1)
+            // openProject("new")
         },
         text: "+ Create new project"
     }))
+    $('#newNameSubmit').click(function() {
+        openProject({
+            name: $('#newName').val()
+        },true)
+    })
     $("#project-modal").modal({
         backdrop: 'static'
     });
 }
 
-function openProject (project) {
+function openProject (project, isNew) {
     $("#project-modal").modal('hide')
-    $('.workspace').text(project)
+    if (isNew) {
+        projects.push(project)
+        simpleStorage.set('list',JSON.stringify(projects))
+    }
+    $('.workspace').text(project.name)
 }
