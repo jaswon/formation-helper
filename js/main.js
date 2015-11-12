@@ -1,43 +1,68 @@
 var projects;
 
 $(function() {
-    // simpleStorage.set('list',JSON.stringify([1,2,3,4,5,6,7,8,9,10]))
-    var getlist = simpleStorage.get('list')
-    if (getlist === undefined) {
-        simpleStorage.set('list',"[]")
+    var getlist = localStorage.getItem('list')
+    if (getlist == null) {
         projects = []
+        updateProjects()
     } else {
-        console.log(getlist);
         projects = JSON.parse(getlist)
-        console.log(projects);
     }
     startMenu()
 })
 
+function updateProjects() {
+    localStorage.setItem('list',JSON.stringify(projects))
+}
+
 function startMenu () {
     projects.forEach(function(i) {
-        $('#project-list').append($( "<a/>", {
+        $( "<a/>", {
             class: "list-group-item",
             href: "#",
-            click: function() {
+            click: function () {
                 openProject(i,false)
             },
             text: i.name
-        }))
+        }).append($("<button/>", {
+            class: 'btn btn-xs btn-danger pull-right',
+            click: function () {
+                var thisproj = $(this)
+                $("#confirm-delete").modal({
+                    backdrop: 'static'
+                });
+                $('#delete-project').click(function() {
+                    projects.splice(projects.map(function(e) { return e.id; }).indexOf(i.id),1)
+                    updateProjects()
+                    thisproj.parent().remove()
+                    $("#confirm-delete").modal('hide');
+                })
+                return false;
+            }
+        }).append($("<span/>", {
+            class: "glyphicon glyphicon-remove"
+        }))).appendTo($('#project-list'))
     })
     $('#project-list').append($( "<a/>", {
         class: "list-group-item",
         href: "#",
         click: function() {
-            $('#list-or-new').carousel(1)
-            // openProject("new")
+            // $('#list-or-new').carousel(1)
+            $("#new-project").modal({
+                backdrop: 'static'
+            });
         },
         text: "+ Create new project"
     }))
     $('#newNameSubmit').click(function() {
+        $('#new-project').modal('hide')
         openProject({
+            id: projects.length,
             name: $('#newName').val()
         },true)
+    })
+    $('#newNameBack').click(function() {
+        $('#new-project').modal('hide')
     })
     $("#project-modal").modal({
         backdrop: 'static'
@@ -48,7 +73,7 @@ function openProject (project, isNew) {
     $("#project-modal").modal('hide')
     if (isNew) {
         projects.push(project)
-        simpleStorage.set('list',JSON.stringify(projects))
+        updateProjects()
     }
     $('.workspace').text(project.name)
 }
