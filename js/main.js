@@ -75,5 +75,5 @@ function openProject (project, isNew) {
         projects.push(project)
         updateProjects()
     }
-    $('.workspace').text(project.name)
+    // $('.workspace').text(project.name)
 }
