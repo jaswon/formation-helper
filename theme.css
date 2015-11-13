@@ -1,3 +1,7 @@
+/*body, html {
+    overflow: hidden;
+}*/
+
 .modal-dialog {
     display: inline-block;
     vertical-align: middle;
@@ -24,7 +28,7 @@
     position: absolute;
     width: 230px;
     transition: left .7s;
-    background-color: grey;
+    background-color: #eee;
     height: 100vh;
     top: 0;
 }
@@ -45,16 +49,14 @@
     position: absolute;
     top: 40vh;
     bottom: 40vh;
-    left: 230px;
-    /*width:*/
-    background-color: silver;
-    /*top: 50vh;*/
-    /*vertical-align: middle;*/
+    left: 229px;
+    color: #333;
+    background-color: #eee;
+    /*border-color: #ddd;*/
 }
 
-.formations-sidebar .toggle:focus {
-  background-image: none;
-  outline: 0;
+.formations-sidebar .toggle:focus, button:focus {
+    outline: 0;
 }
 
 .formations-sidebar .toggle span {
@@ -63,4 +65,29 @@
 
 .formations-sidebar.out .toggle span {
     transform: rotate(0.5turn);
+}
+
+.sidebar-header {
+    margin-top: 0px;
+    border-bottom: 2px solid #eee;
+    padding: 8px;
+}
+
+.sidebar-list-container {
+    overflow:auto;
+    max-height: 100%;
+    padding: 15px;
+}
+
+.sidebar-list,.sidebar-list-container a {
+    text-decoration: none;
+}
+
+.panel {
+    margin-bottom: 5px;
+}
+
+.panel-body {
+    padding-left: 10px;
+    text-align: left;
 }

@@ -17,6 +17,8 @@
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="jqueryui/jquery-ui.css" />
+        <script src="jqueryui/jquery-ui.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
 
@@ -40,10 +42,16 @@
             </div>
             <div id="page-content-wrapper">
                 <div class="formations-sidebar in">
-
+                    <!-- <h3 class="sidebar-header">Formations</h3> -->
+                    <div class="sidebar-list-container">
+                        <div class="sidebar-list"></div>
+                    </div>
                     <button id="toggleFormations" class="toggle btn btn-link">
                         <span class="glyphicon glyphicon-chevron-right"></span>
                     </button>
+                </div>
+                <div class="formations-main">
+
                 </div>
             </div>
         </div>
@@ -55,6 +63,25 @@
                     </div>
                     <div class="modal-body">
                         <ul class="list-group" id="project-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="new-formation" class="modal fade" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Create new formation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="newFormation">Formation name</label>
+                                <input type="text" class="form-control" id="newFormation" placeholder="Name">
+                            </div>
+                            <button id="newFormationSubmit" type="submit" class="btn btn-primary">Create</button>
+                            <button type="button" class="btn btn-default" id="newFormationBack">Back</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -78,7 +105,7 @@
                 </div>
             </div>
         </div>
-        <div id="confirm-delete" class="modal fade" data-keyboard="false">
+        <div id="confirm-delete-project" class="modal fade" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -90,6 +117,22 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                         <button id="delete-project" type="button" class="btn btn-danger">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="confirm-delete-formation" class="modal fade" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Confirm delete</h3>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this formation?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button id="delete-formation" type="button" class="btn btn-danger">Yes</button>
                     </div>
                 </div>
             </div>
