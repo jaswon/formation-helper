@@ -5974,8 +5974,8 @@ button.close {
   opacity: 0;
 }
 .modal-backdrop.in {
-  filter: alpha(opacity=50);
-  opacity: .5;
+  filter: alpha(opacity=80);
+  opacity: .8;
 }
 .modal-header {
   min-height: 16.42857143px;

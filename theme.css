@@ -1,18 +1,66 @@
-body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+.modal-dialog {
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px;
+.modal {
+    text-align: center;
 }
 
-.theme-showcase > p > .btn {
-  margin: 5px 0;
+@media screen and (min-width: 768px) {
+    .modal:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: " ";
+        height: 100%;
+    }
 }
 
-.theme-showcase .navbar .container {
-  width: auto;
+.modal-content {
+    text-align: left;
+}
+
+.formations-sidebar {
+    position: absolute;
+    width: 230px;
+    transition: left .7s;
+    background-color: grey;
+    height: 100vh;
+    top: 0;
+}
+
+.formations-sidebar.out {
+    left: 0px;
+}
+
+.formations-sidebar.in {
+    left: -240px;
+}
+
+.formations-sidebar .toggle {
+    user-select: none;
+    border-radius: 0px 25px 25px 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    position: absolute;
+    top: 40vh;
+    bottom: 40vh;
+    left: 230px;
+    /*width:*/
+    background-color: silver;
+    /*top: 50vh;*/
+    /*vertical-align: middle;*/
+}
+
+.formations-sidebar .toggle:focus {
+  background-image: none;
+  outline: 0;
+}
+
+.formations-sidebar .toggle span {
+    transition: transform .7s;
+}
+
+.formations-sidebar.out .toggle span {
+    transform: rotate(0.5turn);
 }

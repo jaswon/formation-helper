@@ -8,6 +8,22 @@ $(function() {
     } else {
         projects = JSON.parse(getlist)
     }
+    $('#newNameSubmit').click(function() {
+        $('#new-project').modal('hide')
+        openProject({
+            id: projects.length,
+            name: $('#newName').val()
+        },true)
+    })
+    $('#newNameBack').click(function() {
+        $('#new-project').modal('hide')
+    })
+    $("#project-modal").modal({
+        backdrop: 'static'
+    });
+    $('#toggleFormations').click(function() {
+        $('.formations-sidebar').toggleClass('out in')
+    })
     startMenu()
 })
 
@@ -25,7 +41,7 @@ function startMenu () {
             },
             text: i.name
         }).append($("<button/>", {
-            class: 'btn btn-xs btn-danger pull-right',
+            class: 'btn btn-xs btn-link pull-right',
             click: function () {
                 var thisproj = $(this)
                 $("#confirm-delete").modal({
@@ -54,19 +70,6 @@ function startMenu () {
         },
         text: "+ Create new project"
     }))
-    $('#newNameSubmit').click(function() {
-        $('#new-project').modal('hide')
-        openProject({
-            id: projects.length,
-            name: $('#newName').val()
-        },true)
-    })
-    $('#newNameBack').click(function() {
-        $('#new-project').modal('hide')
-    })
-    $("#project-modal").modal({
-        backdrop: 'static'
-    });
 }
 
 function openProject (project, isNew) {
